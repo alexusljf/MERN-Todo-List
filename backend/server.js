@@ -3,7 +3,6 @@ import cors from "cors";
 import "./loadEnvironment.js";
 import records from "./routes/record.js";
 
-
 const PORT = 5000;
 const app = express();
 
