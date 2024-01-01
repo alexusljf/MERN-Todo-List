@@ -1,41 +1,11 @@
 import React from "react";
 import {NavLink, useLocation} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
-import { makeStyles } from "@mui/styles";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddIcon from '@mui/icons-material/Add';
 import { Button, Drawer, List, ListItem, ListItemButton, ListItemText, ListItemIcon, Typography } from "@mui/material";
-
-const drawerWidth = 240
-
-const useStyles = makeStyles((theme) => {
-    return {
-    page: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3),
-      paddingTop: theme.spacing(3),
-      paddingBottom: 0,
-      background: '#f9f9f9',
-      width: '100%',
-      minHeight: `calc(100vh - ${theme.spacing(3)})`
-    },
-    root: {
-      display: 'flex',
-    },
-    drawer: {
-      width: drawerWidth,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-    },
-    active: {
-      background: '#f4f4f4'
-    },
-    title: {
-        padding: theme.spacing(2),
-    }
-  }})
+import './layout.scss';
 
   // array of links for the side drawer
   const menuItems = [
@@ -58,22 +28,21 @@ const useStyles = makeStyles((theme) => {
 
 export default function Layout({ children }) {
     const location = useLocation()
-  const classes = useStyles()
     
     return (
-        <div className={classes.root}>
+        <div className= "root">
             <Drawer
-                className={classes.drawer}
+                className= "drawer"
                 variant="permanent"
                 anchor="left"
-                classes={{ paper: classes.drawerPaper }}
+                classes={{ paper: "drawerPaper" }}
             >
-                <Typography variant="h5" className={classes.title}>
+                <Typography variant="h5" className= "title">
                     Todo List
                 </Typography>
                 <List>
                     {menuItems.map(item => (
-                        <ListItem key={item.text} className={location.pathname == item.path ? classes.active : null}>
+                        <ListItem key={item.text} className={location.pathname == item.path ? "active" : null}>
                             <ListItemButton component = {NavLink} to = {item.path}>
                                 <ListItemIcon>
                                     {item.icon}
@@ -84,7 +53,7 @@ export default function Layout({ children }) {
                     ))}
                 </List>
             </Drawer>
-            <div className={classes.page}>
+            <div className= "page">
                 {children}
             </div>
         </div>

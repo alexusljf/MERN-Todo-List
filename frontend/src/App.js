@@ -2,13 +2,13 @@ import React from "react";
 // We use Route in order to define the different routes of our application
 import { Route, Routes } from "react-router-dom";
  // We import all the components we need in our app
-import { makeStyles } from "@mui/styles";
 import Welcome from "./views/welcome";
 import RecordList from "./views/recordList";
 import Edit from "./views/edit";
 import Layout from "./components/layout";
 import Create from "./views/create";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import "./App.scss";
  
 const theme = createTheme({
   // add whatever themes here, will take precedence over default theme
@@ -23,19 +23,10 @@ const theme = createTheme({
   },
 });
 
-const useStyles = makeStyles(() => {
-  return {
-    appDiv: {
-      margin:-8
-    }
-  }
-});
-
 const App = () => {
-  const classes = useStyles();
 return (
   <ThemeProvider theme={theme}>
-   <div className= {classes.appDiv}>
+   <div style={{margin: -8}}>
     <Layout>
      {/* <Navbar /> */}
      <Routes>
