@@ -3,11 +3,12 @@ $drawer-width: 240px;
 $active-background: #f4f4f4;
 $theme-spacing: 8px;
 
+.welcomePage {
+    background: $page-background;
+    width: 100%;
+}
+
 .page {
-    padding-left: $theme-spacing * 3;
-    padding-right: $theme-spacing * 3;
-    padding-top: $theme-spacing * 3;
-    padding-bottom: 0;
     background: $page-background;
     width: 100%;
     min-height: calc(100vh - #{$theme-spacing * 3});
@@ -17,6 +18,8 @@ $theme-spacing: 8px;
     display: flex;
 }
 
+
+// styling for left bar
 .drawer {
     width: $drawer-width;
 }
@@ -31,4 +34,11 @@ $theme-spacing: 8px;
 
 .title {
     padding: $theme-spacing * 2;
+}
+
+.buttonBox{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 10px;
 }

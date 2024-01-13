@@ -10,6 +10,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
+import './createEdit.scss';
+import { Grid } from "@mui/material";
 
 export default function Create() {
  const [form, setForm] = useState({
@@ -67,39 +69,49 @@ const [taskError, setTaskError] = useState(false);
   // This following section will display the form that takes the input from the user.
  return (
   <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-  <Box sx={{width: "auto"}}>
-    <Typography variant='h3' gutterBottom>
-        Create New Task
-    </Typography>
-     <form onSubmit={onSubmit} autoComplete="on" >
-      <TextField
-        sx = {{display: "block", marginBottom: "25px"}}
-        variant = "outlined"
-        onChange={(e) => updateForm({ task: e.target.value })}
-        label="Task"
-        error = {taskError}
-        helperText = {taskError ? "Task cannot be empty" : ""}
-      />
-      <DateTimePicker 
-        sx = {{display: "block"}}
-        defaultValue={curDate}
-        onChange={(newValue) => updateForm({ dueDate: newValue })}
-        disablePast
-        skipDisabled
-        required
-        error = {dueDateError}
-        label="Due Date"
-        helperText = {dueDateError ? "Due date cannot be empty" : ""}
-      />
-      <br/>
-      <Button 
-        variant="contained" 
-        startIcon={<SendIcon />}
-        type="submit">
-        Create Task
-      </Button>
-     </form>
-   </Box>
+  <Box className = "createMain"> 
+    <Box className = "createContainer" sx={{width: "auto"}}>
+      <Typography variant='h3' gutterBottom>
+          Create New Task
+      </Typography>
+      <form onSubmit={onSubmit} autoComplete="on" >
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+            <TextField
+                variant="outlined"
+                onChange={(e) => updateForm({ task: e.target.value })}
+                label="Task"
+                error={taskError}
+                helperText={taskError ? "Task cannot be empty" : ""}
+                fullWidth
+            />
+        </Grid>
+        <Grid item xs={12}>
+            <DateTimePicker
+               sx={{ width: '250px' }}
+                defaultValue={curDate}
+                onChange={(newValue) => updateForm({ dueDate: newValue })}
+                disablePast
+                skipDisabled
+                required
+                error={dueDateError}
+                label="Due Date"
+                helperText={dueDateError ? "Due date cannot be empty" : ""}
+                fullWidth
+            />
+        </Grid>
+    </Grid>
+    <br />
+        <Button 
+          variant="contained" 
+          startIcon={<SendIcon />}
+          type="submit">
+          Create Task
+        </Button>
+      </form>
+    </Box>
+  </Box>
+
    </LocalizationProvider>
  );
 }

@@ -10,6 +10,7 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en-gb';
 import Box from '@mui/material/Box';
+import { Grid } from "@mui/material";
 
  export default function Edit() {
  const [form, setForm] = useState({
@@ -81,21 +82,25 @@ import Box from '@mui/material/Box';
   // This following section will display the form that takes input from the user to update the data.
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-    <Box sx={{width: "auto"}}>
+    <Box className = "createMain"> 
+    <Box className = "createContainer" sx={{width: "auto"}}>
      <Typography variant='h3' gutterBottom>
         Update Task
       </Typography>
      <form onSubmit={onSubmit} autoComplete="on" >
+     <Grid container spacing={2}>
+      <Grid item xs={12}>
       <TextField
         id="task" 
         value={form.task || ''}
-        sx = {{display: "block", marginBottom: "25px"}}
         variant = "outlined"
         onChange={(e) => updateForm({ task: e.target.value })}
         label="Task"
       />
+      </Grid>
+      <Grid item xs={12}>
       <DateTimePicker 
-        sx = {{display: "block"}}
+        sx={{ width: '250px' }}
         defaultValue={curDate}
         onChange={(newValue) => updateForm({ dueDate: newValue })}
         disablePast
@@ -104,6 +109,8 @@ import Box from '@mui/material/Box';
         error = {dueDateError}
         label="Due Date"
       />
+      </Grid>
+      </Grid>
       <br/>
       <Button 
         variant="contained" 
@@ -113,6 +120,8 @@ import Box from '@mui/material/Box';
       </Button>
      </form>
    </Box>
+   </Box>
+
    </LocalizationProvider>
  );
 }
